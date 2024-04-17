@@ -1,0 +1,6 @@
+@Domin_Controle_Back_HostAddress = http://localhost:5124
+
+GET {{Domin_Controle_Back_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
