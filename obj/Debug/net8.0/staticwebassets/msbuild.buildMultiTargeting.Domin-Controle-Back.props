@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Domin-Controle-Back.props" />
+</Project>
