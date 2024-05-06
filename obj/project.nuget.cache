@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fvrrQcPBpU3+sfO7AvJaZSA12PVhX1lp0QCsRHKjj8n6PyrB705CzAykW2jVkmNOL6WqcqaWtePc8fLom/YJjA==",
+  "dgSpecHash": "dVBAK/M1AkwoWSQjc5ABrKq9L3ht6MExzvNbaAlBGx57oN4ZdAU7JgL8vUYtuOqozgQJJ7sTsH3E5+YlZATp8g==",
   "success": true,
   "projectFilePath": "/home/domindev/Projetos/DominControle/Domin-Controle-Back/Domin-Controle-Back.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "/home/domindev/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/home/domindev/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/home/domindev/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "/home/domindev/.nuget/packages/microsoft.aspnetcore.openapi/8.0.4/microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.24/microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.build/17.8.3/microsoft.build.17.8.3.nupkg.sha512",
@@ -106,7 +107,7 @@
     "/home/domindev/.nuget/packages/microsoft.net.stringtools/17.8.3/microsoft.net.stringtools.17.8.3.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "/home/domindev/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/domindev/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.visualstudio.web.codegeneration/8.0.2/microsoft.visualstudio.web.codegeneration.8.0.2.nupkg.sha512",
     "/home/domindev/.nuget/packages/microsoft.visualstudio.web.codegeneration.core/8.0.2/microsoft.visualstudio.web.codegeneration.core.8.0.2.nupkg.sha512",
