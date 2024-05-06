@@ -8399,24 +8399,31 @@
     ]
   },
   "packageFolders": {
-    "/home/domindev/.nuget/packages/": {}
+    "C:\\Users\\mfdma\\.nuget\\packages\\": {},
+    "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/domindev/Projetos/DominControle/Domin-Controle-Back/Domin-Controle-Back.csproj",
+      "projectUniqueName": "E:\\Projetos\\DominControle\\Domin-Controle-Back\\Domin-Controle-Back.csproj",
       "projectName": "Domin-Controle-Back",
-      "projectPath": "/home/domindev/Projetos/DominControle/Domin-Controle-Back/Domin-Controle-Back.csproj",
-      "packagesPath": "/home/domindev/.nuget/packages/",
-      "outputPath": "/home/domindev/Projetos/DominControle/Domin-Controle-Back/obj/",
+      "projectPath": "E:\\Projetos\\DominControle\\Domin-Controle-Back\\Domin-Controle-Back.csproj",
+      "packagesPath": "C:\\Users\\mfdma\\.nuget\\packages\\",
+      "outputPath": "E:\\Projetos\\DominControle\\Domin-Controle-Back\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "E:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/domindev/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mfdma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8429,6 +8436,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8495,7 +8507,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
