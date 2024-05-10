@@ -4,26 +4,26 @@ using Microsoft.AspNetCore.Mvc;
 [Route("/exams")]
 public class ExamsController : ControllerBase {
 
-  private IExamService _service;
+  private IExamService service;
 
   public ExamsController(IExamService service) {
-    _service = service;
+    this.service = service;
   }
 
   [HttpGet]
-  public IActionResult List(int page = 1) {
+  public IActionResult ListAllExams(int page = 1) {
 
-    var exams = _service.Lista(page);
+    var exams = service.ListAllExams(page);
     return StatusCode(200, exams);
 
   }
 
   [HttpPost]
-  public IActionResult Create([FromBody] ExamDto examDto) {
+  public IActionResult AddExam([FromBody] ExamDto examDto) {
 
     try {
 
-      var exam = _service.Incluir(examDto);
+      var exam = service.AddExam(examDto);
       return StatusCode(201, exam);
 
     } catch(ExamsError error) {

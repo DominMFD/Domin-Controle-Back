@@ -1,21 +1,21 @@
 public class ExamService  : IExamService{
 
-    private ExamContext _db;
-    public ExamService(ExamContext db) {
-        _db = db;
+    private ExamContext context;
+    public ExamService(ExamContext context) {
+        this.context = context;
     }
 
-    public List<ExamModel> Lista(int page) {
+    public List<ExamModel> ListAllExams(int page) {
 
         if(page < 1) page = 1;
 
         int limit = 10;
         int offset = (page - 1) * limit;
 
-        return _db.Exams.Skip(offset).Take(limit).ToList();
+        return context.Exams.Skip(offset).Take(limit).ToList();
     }
 
-    public ExamModel Incluir(ExamDto examDto) {
+    public ExamModel AddExam(ExamDto examDto) {
 
         if(examDto.Date == DateTime.MinValue) throw new ExamsError("Data inválida");
 
@@ -25,8 +25,8 @@ public class ExamService  : IExamService{
             Rni = examDto.Rni,
         };
 
-        _db.Exams.Add(exam);
-        _db.SaveChanges();
+        context.Exams.Add(exam);
+        context.SaveChanges();
 
         return exam;
     }
