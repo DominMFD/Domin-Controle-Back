@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ExamContext>(opt => 
 opt.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)))
 );
+
+builder.Services.AddScoped<IExamService, ExamService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
