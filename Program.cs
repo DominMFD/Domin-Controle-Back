@@ -7,11 +7,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<ExamContext>(opt => 
+builder.Services.AddDbContext<ControlContext>(opt => 
 opt.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)))
 );
 
 builder.Services.AddScoped<IExamService, ExamService>();
+builder.Services.AddScoped<IOxygenationService, OxygenationService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

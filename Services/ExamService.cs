@@ -1,12 +1,11 @@
 public class ExamService  : IExamService{
 
-    private ExamContext context;
-    public ExamService(ExamContext context) {
+    private ControlContext context;
+    public ExamService(ControlContext context) {
         this.context = context;
     }
 
     public List<ExamModel> ListAllExams(int page) {
-
         if(page < 1) page = 1;
 
         int limit = 10;
@@ -17,7 +16,7 @@ public class ExamService  : IExamService{
 
     public ExamModel AddExam(ExamDto examDto) {
 
-        if(examDto.Date == DateTime.MinValue) throw new ExamsError("Data inválida");
+        if(examDto.Date == DateTime.MinValue) throw new ExamsError("Invalid Date");
 
         ExamModel exam = new ExamModel{
             Date = examDto.Date,

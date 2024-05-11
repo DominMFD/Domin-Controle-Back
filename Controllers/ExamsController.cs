@@ -12,8 +12,8 @@ public class ExamsController : ControllerBase {
 
   [HttpGet]
   public IActionResult ListAllExams(int page = 1) {
-
     var exams = service.ListAllExams(page);
+    
     return StatusCode(200, exams);
 
   }
@@ -29,10 +29,5 @@ public class ExamsController : ControllerBase {
     } catch(ExamsError error) {
       return StatusCode(400, new ExamsError(error.Message));
     }
-
-    
-
-    
-
   }
 }
