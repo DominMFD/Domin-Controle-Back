@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Razor.Language;
+
 public class ExamService  : IExamService{
 
     private ControlContext context;
@@ -12,6 +14,23 @@ public class ExamService  : IExamService{
         int offset = (page - 1) * limit;
 
         return context.Exams.Skip(offset).Take(limit).ToList();
+    }
+
+    public ExamModel getAExam(long id) {
+        var exam = context.Exams.Find(id);
+
+        if (exam == null) throw new ExamsError("Exam not found");
+
+        return exam;
+    }
+
+    public List<ExamModel> getAllExamsInAlphabeticalOrder(int page) {
+        if(page < 1) page = 1;
+
+        int limit = 10;
+        int offset = (page - 1) * limit;
+
+        return context.Exams.OrderBy(i => i.Date).Skip(offset).Take(limit).ToList();
     }
 
     public ExamModel AddExam(ExamDto examDto) {
