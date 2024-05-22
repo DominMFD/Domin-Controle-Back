@@ -11,8 +11,11 @@ public class ExamsController : ControllerBase {
   }
 
   [HttpGet]
-  public IActionResult ListAllExams(int page = 1) {
-    var exams = service.ListAllExams(page);
+  public IActionResult ListAllExams(
+    [FromQuery] string sortBy = "date",
+    [FromQuery] string order = "asc",
+    int page = 1) {
+    var exams = service.ListAllExams(sortBy, order, page);
     
     return StatusCode(200, exams);
 
@@ -28,18 +31,6 @@ public class ExamsController : ControllerBase {
     } catch (ExamsError error) {
       return StatusCode(400, new ExamsError(error.Message));
     }
-  }
-
-  [HttpGet("/order")]
-  public IActionResult getAllExamsInAlphabeticalOrder(int page = 1) {
-    try {
-
-      var exams = service.getAllExamsInAlphabeticalOrder(page);
-      return StatusCode(200, exams);
-
-    } catch (ExamsError error) {
-      return StatusCode(400, new ExamsError(error.Message));
-    } 
   }
 
   [HttpPost]
