@@ -509,3 +509,9 @@ E:\Projetos\DominControle\Domin-Controle-Back\obj\Debug\net8.0\refint\Domin-Cont
 E:\Projetos\DominControle\Domin-Controle-Back\obj\Debug\net8.0\Domin-Controle-Back.pdb
 E:\Projetos\DominControle\Domin-Controle-Back\obj\Debug\net8.0\Domin-Controle-Back.genruntimeconfig.cache
 E:\Projetos\DominControle\Domin-Controle-Back\obj\Debug\net8.0\ref\Domin-Controle-Back.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\Castle.Core.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\Moq.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\xunit.abstractions.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\xunit.assert.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\xunit.core.dll
+E:\Projetos\DominControle\Domin-Controle-Back\bin\Debug\net8.0\xunit.execution.dotnet.dll
