@@ -31,7 +31,7 @@ public class ExamServiceTest {
     }
 
     [Fact]
-    public async Task GetAExam() {
+    public async Task GetAExamInDataBase() {
 
         //Arrange
         var examId = 1;
@@ -64,7 +64,7 @@ public class ExamServiceTest {
     }   
 
     [Fact]
-    public async Task GetAllExams() {
+    public async Task GetAllExamsInDataBase() {
          //Arrange
         var sortBy = "date";
         var order = "asc";
