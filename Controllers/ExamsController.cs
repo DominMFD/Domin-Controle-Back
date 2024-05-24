@@ -22,10 +22,10 @@ public class ExamsController : ControllerBase {
   }
 
   [HttpGet("{id}")]
-  public IActionResult getAExame([FromRoute] long id) {
+  public IActionResult GetAExame([FromRoute] long id) {
     try {
-      
-      var exam = service.getAExam(id);
+
+      var exam = service.GetAExam(id);
       return StatusCode(200, exam);
 
     } catch (ExamsError error) {

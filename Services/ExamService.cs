@@ -39,7 +39,7 @@ public class ExamService  : IExamService{
         return context.Exams.OrderBy(e => e.Date).Skip(offset).Take(limit).ToList();
     }
 
-    public ExamModel getAExam(long id) {
+    public ExamModel GetAExam(long id) {
         var exam = context.Exams.Find(id);
 
         if (exam == null) throw new ExamsError("Exam not found");
