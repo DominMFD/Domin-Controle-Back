@@ -76,20 +76,20 @@ public class ExamControllerTest {
         var errorMessage = "Error get a exam";
 
         mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
-         mockService.Setup(service => service.getAExam(1)).Returns(examModel);
+         mockService.Setup(service => service.GetAExam(1)).Returns(examModel);
         var controller = new ExamsController(mockService.Object);
 
         controller.AddExam(examDto);
 
-        var result = controller.getAExame(1) as ObjectResult;
+        var result = controller.GetAExame(1) as ObjectResult;
 
         Assert.NotNull(result);
         Assert.Equal(200, result.StatusCode);
         Assert.Equal(examModel, result.Value);
 
-        mockService.Setup(service => service.getAExam(2)).Throws(new ExamsError(errorMessage));
+        mockService.Setup(service => service.GetAExam(2)).Throws(new ExamsError(errorMessage));
 
-        result = controller.getAExame(2) as ObjectResult;
+        result = controller.GetAExame(2) as ObjectResult;
 
         Assert.NotNull(result);
         Assert.Equal(400, result.StatusCode);

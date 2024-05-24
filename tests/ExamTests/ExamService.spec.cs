@@ -57,7 +57,7 @@ public class ExamServiceTest {
         examService.AddExam(examDto);
         examService.AddExam(examDto2);
 
-        var result = examService.getAExam(examId);
+        var result = examService.GetAExam(examId);
 
         //Assert
         Assert.Equal(result.Id, examId);
