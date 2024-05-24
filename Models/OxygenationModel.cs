@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class OxygenationModel {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id {get; set;}
+    public long Id {get; set;}
 
     [Required]
     [DataType(DataType.DateTime)]

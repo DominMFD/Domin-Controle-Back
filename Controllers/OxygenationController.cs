@@ -11,10 +11,25 @@ public class OxygenationController : ControllerBase {
     }
 
     [HttpGet]
-    public IActionResult ListAllOxygenation(int page = 1) {
-        var oxygenation = service.ListAllOxygenation(page);
+    public IActionResult ListAllOxygenation(
+        [FromQuery] string sortBy = "date",
+        [FromQuery] string order = "asc",
+        int page = 1) {
+        var oxygenation = service.ListAllOxygenation(sortBy, order, page);
 
         return StatusCode(200, oxygenation);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetAOxygenation([FromRoute] long id) {
+        try {
+
+            var exam = service.GetAOxygenation(id);
+            return StatusCode(200, exam);
+
+        } catch (OxygenationError error) {
+            return StatusCode(400, new OxygenationError(error.Message));
+        }
     }
 
     [HttpPost]

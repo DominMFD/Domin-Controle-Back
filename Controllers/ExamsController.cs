@@ -24,7 +24,7 @@ public class ExamsController : ControllerBase {
   [HttpGet("{id}")]
   public IActionResult getAExame([FromRoute] long id) {
     try {
-
+      
       var exam = service.getAExam(id);
       return StatusCode(200, exam);
 
