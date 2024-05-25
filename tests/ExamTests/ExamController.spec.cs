@@ -9,7 +9,7 @@ public class ExamControllerTest {
     Mock<IExamService> mockService = new Mock<IExamService>();
 
     [Fact]
-    public void AddExamAndReturnStatusCode() {
+    public void AddExamAndReturnSuccessfulStatusCode() {
 
         
         var examDto = new ExamDto 
@@ -18,7 +18,27 @@ public class ExamControllerTest {
             Hematocrito = 58.6,
             Rni = 1.7,
         };
-        var examDto2 = new ExamDto 
+
+        var examModel = new ExamModel{
+            Id = 1,
+            Date = DateTime.Now,
+            Hematocrito = 58.6,
+            Rni = 1.7,
+        };
+        
+        mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
+        var controller = new ExamsController(mockService.Object);
+
+        var result = controller.AddExam(examDto) as ObjectResult;
+
+        Assert.NotNull(result);
+        Assert.Equal(201, result.StatusCode);
+        Assert.Equal(examModel, result.Value);
+    }
+
+    [Fact]
+    public void AddExamAndReturnErrorStatusCode() {
+         var examDto2 = new ExamDto 
         {
             Date = DateTime.Now,
             Rni = 1.7,
@@ -32,19 +52,11 @@ public class ExamControllerTest {
         };
 
         var errorMessage = "Error adding exam";
-        
-        mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
-        var controller = new ExamsController(mockService.Object);
-
-        var result = controller.AddExam(examDto) as ObjectResult;
-
-        Assert.NotNull(result);
-        Assert.Equal(201, result.StatusCode);
-        Assert.Equal(examModel, result.Value);
 
         mockService.Setup(service => service.AddExam(examDto2)).Throws(new ExamsError(errorMessage));
+        var controller = new ExamsController(mockService.Object);
 
-        result = controller.AddExam(examDto2) as ObjectResult;
+        var result = controller.AddExam(examDto2) as ObjectResult;
 
         Assert.NotNull(result);
         Assert.Equal(400, result.StatusCode);
@@ -52,7 +64,7 @@ public class ExamControllerTest {
     }
 
     [Fact]
-    public void GetAExamAndReturnStatusCode() {
+    public void GetAExamAndReturnSuccessfulStatusCode() {
 
         var examModel = new ExamModel{
             Id = 1,
@@ -73,8 +85,6 @@ public class ExamControllerTest {
             Rni = 1.7,
         };
 
-        var errorMessage = "Error get a exam";
-
         mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
          mockService.Setup(service => service.GetAExam(1)).Returns(examModel);
         var controller = new ExamsController(mockService.Object);
@@ -86,15 +96,23 @@ public class ExamControllerTest {
         Assert.NotNull(result);
         Assert.Equal(200, result.StatusCode);
         Assert.Equal(examModel, result.Value);
+    }
+
+    [Fact]
+    public void GetAExamAndReturnErrorStatusCode() {
+        var errorMessage = "Error get a exam";
 
         mockService.Setup(service => service.GetAExam(2)).Throws(new ExamsError(errorMessage));
+        var controller = new ExamsController(mockService.Object);
 
-        result = controller.GetAExame(2) as ObjectResult;
+        var result = controller.GetAExame(2) as ObjectResult;
 
         Assert.NotNull(result);
         Assert.Equal(400, result.StatusCode);
         Assert.Equal(errorMessage, (result.Value as ExamsError).Message);
     }
+
+
 
     [Fact]
     public void ListAllExamsAndReturnStatusCode() {

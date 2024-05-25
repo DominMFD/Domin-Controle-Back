@@ -6,7 +6,7 @@ public class OxygenationControllerTest {
     Mock<IOxygenationService> mockService = new Mock<IOxygenationService>();
 
     [Fact]
-    public void AddOxygenationAndReturnStatusCode() {
+    public void AddOxygenationAndReturnSuccessfulStatusCode() {
         var oxygenationDto = new OxygenationDto {
             Date = DateTime.Now,
             Value = 80,
@@ -29,7 +29,32 @@ public class OxygenationControllerTest {
     }
 
     [Fact]
-    public void GetOxygenationAndReturnStatusCode() {
+    public void AddOxygenationAndReturnErrorStatusCode() {
+        var oxygenationDto = new OxygenationDto {
+            Date = DateTime.Now,
+        };
+
+        var oxygenationModel = new OxygenationModel {
+            Id = 1,
+            Date = DateTime.Now,
+            Value = 80,
+        };
+
+        var errorMessage = "Error adding oxygenation";
+
+        mockService.Setup(service => service.AddOxygenation(oxygenationDto)).Throws(new OxygenationError(errorMessage));
+
+        var controller = new OxygenationController(mockService.Object);
+
+        var result = controller.AddOxygenation(oxygenationDto) as ObjectResult;
+
+        Assert.NotNull(result);
+        Assert.Equal(400, result.StatusCode);
+        Assert.Equal(errorMessage, (result.Value as OxygenationError).Message);
+    }
+
+    [Fact]
+    public void GetOxygenationAndReturnSuccessfulStatusCode() {
         var oxygenationModel = new OxygenationModel {
             Id = 1,
             Date = DateTime.Now,
@@ -53,6 +78,20 @@ public class OxygenationControllerTest {
         Assert.Equal(200, result.StatusCode);
         Assert.Equal(oxygenationModel, result.Value);   
     }  
+
+    [Fact]
+    public void GetOxygenationAndReturnErrorStatusCode() {
+        var errorMessage = "Error get a oxygenation";
+
+        mockService.Setup(service => service.GetAOxygenation(2)).Throws(new OxygenationError(errorMessage));
+        var controller = new OxygenationController(mockService.Object);
+
+        var result = controller.GetAOxygenation(2) as ObjectResult;
+
+        Assert.NotNull(result);
+        Assert.Equal(400, result.StatusCode);
+        Assert.Equal(errorMessage, (result.Value as OxygenationError).Message);
+    }
 
     [Fact]
     public void ListAllOxygenationAndReturnStatusCode() {
