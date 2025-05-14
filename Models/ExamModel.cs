@@ -13,4 +13,6 @@ public class ExamModel {
   public DateTime Date {get; set;}
   public double Hematocrito {get; set;}
   public double Rni {get; set;}
+  [Required]
+  public required string Marevan {get; set;}
 }
