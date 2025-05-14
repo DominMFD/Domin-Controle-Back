@@ -9,11 +9,13 @@ public class ExamServiceTest {
         var examDate = DateTime.Now;
         var examHematocrito = 56.5;
         var examRni = 2.5;
+        var examMarevan = "3/5";
 
         var examDto = new ExamDto{
             Date = examDate,
             Hematocrito = examHematocrito,
             Rni = examRni,
+            Marevan = examMarevan,
         };
 
         await using var context = new MockDb().CreateDbContext();
@@ -38,16 +40,19 @@ public class ExamServiceTest {
         var examDate = DateTime.Now;
         var examHematocrito = 56.5;
         var examRni = 2.5;
+        var examMarevan = "2/5";
 
         var examDto = new ExamDto{
             Date = examDate,
             Hematocrito = examHematocrito,
             Rni = examRni,
+            Marevan = examMarevan
         };
         var examDto2 = new ExamDto{
             Date = examDate,
             Hematocrito = examHematocrito,
             Rni = examRni,
+            Marevan = examMarevan,
         };
 
         await using var context = new MockDb().CreateDbContext();
@@ -77,16 +82,19 @@ public class ExamServiceTest {
         var examDate2 = DateTime.Now;
         var examHematocrito2 = 55.5;
         var examRni2 = 1.5;
+        var examMarevan = "2/5";
 
         var examDto = new ExamDto{
             Date = examDate,
             Hematocrito = examHematocrito,
             Rni = examRni,
+            Marevan = examMarevan,
         };
         var examDto2 = new ExamDto{
             Date = examDate2,
             Hematocrito = examHematocrito2,
             Rni = examRni2,
+            Marevan = examMarevan,
         };
         
         await using var context = new MockDb().CreateDbContext();

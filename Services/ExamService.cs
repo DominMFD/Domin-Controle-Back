@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.Language;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 
 public class ExamService  : IExamService{
 
@@ -40,11 +38,8 @@ public class ExamService  : IExamService{
     }
 
     public ExamModel GetAExam(long id) {
-        var exam = context.Exams.Find(id);
-
-        if (exam == null) throw new ExamsError("Exam not found");
-
-        return exam;
+        var exam = context.Exams.Find(id) ?? throw new ExamsError("Exam not found");
+    return exam;
     }
 
 
@@ -56,11 +51,22 @@ public class ExamService  : IExamService{
             Date = examDto.Date,
             Hematocrito = examDto.Hematocrito,
             Rni = examDto.Rni,
+            Marevan = examDto.Marevan,
         };
 
         context.Exams.Add(exam);
         context.SaveChanges();
 
         return exam;
+    }
+
+    public void DeleteExam(long id)
+    {
+       int affected = context.Exams
+                      .Where(e => e.Id == id)
+                      .ExecuteDelete();
+
+if (affected == 0)
+    throw new ExamsError("Exam not found");
     }
 }

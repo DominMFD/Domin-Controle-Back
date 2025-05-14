@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("/exams")]
+[Route("exams")]
 public class ExamsController : ControllerBase {
 
   private IExamService service;
@@ -43,6 +43,17 @@ public class ExamsController : ControllerBase {
 
     } catch(ExamsError error) {
       return StatusCode(400, new ExamsError(error.Message));
+    }
+  }
+
+  [HttpDelete("{id}")]
+  public IActionResult DeleteExam([FromRoute] long id) {
+    try {
+      service.DeleteExam(id);
+      return NoContent();
+
+    } catch (ExamsError error) {
+      return NotFound(new { message = error.Message });
     }
   }
 }

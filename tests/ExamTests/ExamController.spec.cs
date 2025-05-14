@@ -17,6 +17,7 @@ public class ExamControllerTest {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+            Marevan = "3/4",
         };
 
         var examModel = new ExamModel{
@@ -24,6 +25,7 @@ public class ExamControllerTest {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+             Marevan = "3/4"
         };
         
         mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
@@ -42,6 +44,7 @@ public class ExamControllerTest {
         {
             Date = DateTime.Now,
             Rni = 1.7,
+            Marevan = "3/4"
         };
 
         var examModel = new ExamModel{
@@ -49,6 +52,7 @@ public class ExamControllerTest {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+             Marevan = "3/4"
         };
 
         var errorMessage = "Error adding exam";
@@ -71,18 +75,21 @@ public class ExamControllerTest {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+            Marevan = "3/4"
         };
         var examModel2 = new ExamModel{
             Id = 2,
             Date = DateTime.Now,
             Hematocrito = 59.6,
             Rni = 1.7,
+            Marevan = "3/4"
         };
         var examDto = new ExamDto 
         {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+             Marevan = "3/4"
         };
 
         mockService.Setup(service => service.AddExam(examDto)).Returns(examModel);
@@ -122,12 +129,14 @@ public class ExamControllerTest {
                 Date = DateTime.Now,
                 Hematocrito = 58.6,
                 Rni = 1.7,
+                Marevan = "3/4"
             },
             new ExamModel{
                 Id = 2,
                 Date = DateTime.Now,
                 Hematocrito = 59.6,
                 Rni = 1.7,
+                Marevan = "3/4"
             }
         };
          var examDto = new ExamDto 
@@ -135,12 +144,14 @@ public class ExamControllerTest {
             Date = DateTime.Now,
             Hematocrito = 58.6,
             Rni = 1.7,
+            Marevan = "3/4"
         };
          var examDto2 = new ExamDto 
         {
             Date = DateTime.Now,
             Hematocrito = 59.6,
             Rni = 1.7,
+            Marevan = "3/4"
         };
 
          mockService.Setup(service => service.AddExam(examDto));
