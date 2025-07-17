@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domin_Controle_Back.Migrations
 {
     [DbContext(typeof(ControlContext))]
-    partial class ControlContextModelSnapshot : ModelSnapshot
+    [Migration("20250717175734_comeback")]
+    partial class comeback
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,14 +35,14 @@ namespace Domin_Controle_Back.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<double?>("Hematocrito")
+                    b.Property<double>("Hematocrito")
                         .HasColumnType("double");
 
                     b.Property<string>("Marevan")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<double?>("Rni")
+                    b.Property<double>("Rni")
                         .HasColumnType("double");
 
                     b.HasKey("Id");

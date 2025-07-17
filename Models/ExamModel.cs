@@ -11,8 +11,8 @@ public class ExamModel {
   [Required]
   [DataType(DataType.DateTime)]
   public DateTime Date {get; set;}
-  public double Hematocrito {get; set;}
-  public double Rni {get; set;}
+  public double? Hematocrito {get; set;}
+  public double? Rni {get; set;}
   [Required]
   public required string Marevan {get; set;}
 }
