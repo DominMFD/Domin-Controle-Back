@@ -21,6 +21,21 @@ public class OxygenationService : IOxygenationService {
             }
         }
 
+        if (sortBy.ToLower() == "time") {
+            if (order.ToLower() == "desc") {
+                return context.Oxygenation
+                    .OrderByDescending(e => e.Date.TimeOfDay) 
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        return context.Oxygenation
+            .OrderBy(e => e.Date.TimeOfDay)
+            .Skip(offset)
+            .Take(limit)
+            .ToList();
+}
+
         if(sortBy.ToLower() == "oxy") {
             if(order.ToLower() == "desc") {
                 return context.Oxygenation.OrderByDescending(e => e.Value).Skip(offset).Take(limit).ToList();

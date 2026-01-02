@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Domin-Controle-Back")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c0d7dc0709e93d5f31c0ba17c325b6fe87a8167")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b80bbd0edff97ef1fa150386a9533781209a7523")]
 [assembly: System.Reflection.AssemblyProductAttribute("Domin-Controle-Back")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Domin-Controle-Back")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
