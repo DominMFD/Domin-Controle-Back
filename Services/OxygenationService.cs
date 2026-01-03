@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 public class OxygenationService : IOxygenationService {
 
     private ControlContext context;
@@ -65,5 +67,13 @@ public class OxygenationService : IOxygenationService {
         context.SaveChanges();
 
         return oxygenation;
+    }
+
+    public void DeleteOxygenation(long id) {
+        int affected = context.Oxygenation.Where(e => e.Id == id).ExecuteDelete();
+
+        if (affected == 0) {
+            throw new ExamsError("Oxygenation not found");
+        }
     }
 }

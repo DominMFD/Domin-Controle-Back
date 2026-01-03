@@ -43,4 +43,14 @@ public class OxygenationController : ControllerBase {
             return StatusCode(400, new OxygenationError(error.Message));
         }
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteOxygenation([FromRoute] long id) {
+        try {
+            service.DeleteOxygenation(id);
+            return NoContent();
+        } catch (OxygenationError error) {
+            return NotFound(new {message = error.Message });
+        }
+    }
  }
