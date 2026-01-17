@@ -13,7 +13,7 @@ public class MedicineModel {
   [Required]
   public required string Name {get; set;}
   [Required]
-  public required string Dosage {get; set;}
+  public required double Dosage {get; set;}
   [Required]
   public required string Description {get; set;}
 }

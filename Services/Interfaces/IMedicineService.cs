@@ -1,3 +1,3 @@
 public interface IMedicineService {
-  MedicineModel AddMedicine(MedicineDto medicineDto);
+  // MedicineModel AddMedicine(MedicineDto medicineDto);
 }

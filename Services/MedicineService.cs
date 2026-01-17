@@ -3,47 +3,53 @@ using Google.Cloud.Storage.V1;
 
 public class MedicineService : IMedicineService {
   private ControlContext context;
-  private StorageClient storageClient;
-  private const string BucketName = "domincontrole.appspot.com";
+    private StorageClient storageClient;
+    private string bucketName;
 
-  public MedicineService(ControlContext context) {
-    this.context = context;
-    this.storageClient = StorageClient.Create();
-  }
-
-     public MedicineModel AddMedicine(MedicineDto medicineDto)
+    public MedicineService(
+        ControlContext context,
+        StorageClient storageClient,   // 👈 VEM DO DI
+        IConfiguration configuration
+    )
     {
-        if (medicineDto.Image == null || medicineDto.Image.Length == 0) {
-          throw new Exception("Imagem inválida");
-        }
-        
-        var fileExtension = Path.GetExtension(medicineDto.Image.FileName);
-        var fileName = $"{Guid.NewGuid()}{fileExtension}";
-        var objectName = $"medicines/{fileName}";
-
-        using (var stream = medicineDto.Image.OpenReadStream())
-        {
-            storageClient.UploadObject(
-                bucket: BucketName,
-                objectName: objectName,
-                contentType: medicineDto.Image.ContentType,
-                source: stream
-            );
-        }
-
-        var imageUrl = $"https://storage.googleapis.com/{BucketName}/{objectName}";
-
-        var medicine = new MedicineModel
-        {
-            Name = medicineDto.Name,
-            Dosage = medicineDto.Dosage,
-            Description = medicineDto.Description,
-            Image = imageUrl
-        };
-
-        context.Medicine.Add(medicine);
-        context.SaveChanges();
-
-        return medicine;
+        this.context = context;
+        this.storageClient = storageClient; // 👈 USA O QUE JÁ FOI CONFIGURADO
+        this.bucketName = configuration["Firebase:Bucket"];
     }
+
+    //  public MedicineModel AddMedicine(MedicineDto medicineDto)
+    // {
+    //     if (medicineDto.Image == null || medicineDto.Image.Length == 0) {
+    //       throw new Exception("Imagem inválida");
+    //     }
+        
+    //     var fileExtension = Path.GetExtension(medicineDto.Image.FileName);
+    //     var fileName = $"{Guid.NewGuid()}{fileExtension}";
+    //     var objectName = $"medicines/{fileName}";
+
+    //     using (var stream = medicineDto.Image.OpenReadStream())
+    //     {
+    //         storageClient.UploadObject(
+    //             bucket: bucketName,
+    //             objectName: objectName,
+    //             contentType: medicineDto.Image.ContentType,
+    //             source: stream
+    //         );
+    //     }
+
+    //     var imageUrl = $"https://storage.googleapis.com/{bucketName}/{objectName}";
+
+    //     var medicine = new MedicineModel
+    //     {
+    //         Name = medicineDto.Name,
+    //         Dosage = double.Parse(medicineDto.Dosage),
+    //         Description = medicineDto.Description,
+    //         Image = imageUrl
+    //     };
+
+    //     context.Medicine.Add(medicine);
+    //     context.SaveChanges();
+
+    //     return medicine;
+    // }
 }

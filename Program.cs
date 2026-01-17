@@ -1,38 +1,85 @@
 using Microsoft.EntityFrameworkCore;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Storage.V1;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ===============================
+// 🔐 Firebase configuration
+// ===============================
+
+var firebaseSection = builder.Configuration.GetSection("Firebase");
+
+var firebaseProjectId = firebaseSection["ProjectId"];
+var firebaseCredentialsPath = firebaseSection["CredentialsPath"];
+
+if (string.IsNullOrEmpty(firebaseCredentialsPath))
+{
+    throw new Exception("Firebase CredentialsPath não configurado.");
+}
+var credentialsPath = Path.Combine(
+    builder.Environment.ContentRootPath,
+    firebaseCredentialsPath
+);
+
+var googleCredential = GoogleCredential.FromFile(credentialsPath);
+
+// Firebase Admin (opcional — mantenho para futuro uso)
 if (FirebaseApp.DefaultInstance == null)
 {
     FirebaseApp.Create(new AppOptions
     {
-        Credential = GoogleCredential.FromFile("domincontrole-firebase-adminsdk-fbsvc-0e13dd1cd2.json"),
-        ProjectId = "domincontrole"
+        Credential = googleCredential,
+        ProjectId = firebaseProjectId
     });
 }
 
+// Google Cloud Storage Client (ESSENCIAL)
+builder.Services.AddSingleton(_ =>
+{
+    return StorageClient.Create(googleCredential);
+});
+
+// ===============================
+// 🗄 Database
+// ===============================
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddDbContext<ControlContext>(opt => 
-opt.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 36)))
+builder.Services.AddDbContext<ControlContext>(options =>
+    options.UseMySql(
+        connectionString,
+        new MySqlServerVersion(new Version(8, 0, 36))
+    )
 );
+
+// ===============================
+// 🧠 Services (DI)
+// ===============================
 
 builder.Services.AddScoped<IExamService, ExamService>();
 builder.Services.AddScoped<IOxygenationService, OxygenationService>();
 builder.Services.AddScoped<IMedicineService, MedicineService>();
 
+// ===============================
+// 🌐 Controllers & Swagger
+// ===============================
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// ===============================
+// 🚦 Build app
+// ===============================
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ===============================
+// 🧪 Middleware
+// ===============================
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -40,7 +87,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
