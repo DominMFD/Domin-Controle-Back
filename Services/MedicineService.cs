@@ -8,48 +8,48 @@ public class MedicineService : IMedicineService {
 
     public MedicineService(
         ControlContext context,
-        StorageClient storageClient,   // 👈 VEM DO DI
+        StorageClient storageClient,
         IConfiguration configuration
     )
     {
         this.context = context;
-        this.storageClient = storageClient; // 👈 USA O QUE JÁ FOI CONFIGURADO
+        this.storageClient = storageClient;
         this.bucketName = configuration["Firebase:Bucket"];
     }
 
-    //  public MedicineModel AddMedicine(MedicineDto medicineDto)
-    // {
-    //     if (medicineDto.Image == null || medicineDto.Image.Length == 0) {
-    //       throw new Exception("Imagem inválida");
-    //     }
+     public MedicineModel AddMedicine(MedicineDto medicineDto)
+    {
+        if (medicineDto.Image == null || medicineDto.Image.Length == 0) {
+          throw new Exception("Imagem inválida");
+        }
         
-    //     var fileExtension = Path.GetExtension(medicineDto.Image.FileName);
-    //     var fileName = $"{Guid.NewGuid()}{fileExtension}";
-    //     var objectName = $"medicines/{fileName}";
+        var fileExtension = Path.GetExtension(medicineDto.Image.FileName);
+        var fileName = $"{Guid.NewGuid()}{fileExtension}";
+        var objectName = $"medicines/{fileName}";
 
-    //     using (var stream = medicineDto.Image.OpenReadStream())
-    //     {
-    //         storageClient.UploadObject(
-    //             bucket: bucketName,
-    //             objectName: objectName,
-    //             contentType: medicineDto.Image.ContentType,
-    //             source: stream
-    //         );
-    //     }
+        using (var stream = medicineDto.Image.OpenReadStream())
+        {
+            storageClient.UploadObject(
+                bucket: bucketName,
+                objectName: objectName,
+                contentType: medicineDto.Image.ContentType,
+                source: stream
+            );
+        }
 
-    //     var imageUrl = $"https://storage.googleapis.com/{bucketName}/{objectName}";
+        var imageUrl = $"https://storage.googleapis.com/{bucketName}/{objectName}";
 
-    //     var medicine = new MedicineModel
-    //     {
-    //         Name = medicineDto.Name,
-    //         Dosage = double.Parse(medicineDto.Dosage),
-    //         Description = medicineDto.Description,
-    //         Image = imageUrl
-    //     };
+        var medicine = new MedicineModel
+        {
+            Name = medicineDto.Name,
+            Dosage = double.Parse(medicineDto.Dosage),
+            Description = medicineDto.Description,
+            Image = imageUrl
+        };
 
-    //     context.Medicine.Add(medicine);
-    //     context.SaveChanges();
+        context.Medicine.Add(medicine);
+        context.SaveChanges();
 
-    //     return medicine;
-    // }
+        return medicine;
+    }
 }

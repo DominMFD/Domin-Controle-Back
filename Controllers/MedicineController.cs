@@ -10,7 +10,13 @@ public class MedicineController : ControllerBase {
   }
 
   [HttpPost]
+  [Consumes("multipart/form-data")]
   public IActionResult AddMedicine([FromForm] MedicineDto medicineDto) {
-    return Ok(medicineDto);
+    try {
+      var medicine = service.AddMedicine(medicineDto);
+      return StatusCode(201, medicine);
+    } catch (MedicineError error) {
+      return StatusCode(400, new MedicineError(error.Message));
+    }
   }
 }
