@@ -19,4 +19,11 @@ public class MedicineController : ControllerBase {
       return StatusCode(400, new MedicineError(error.Message));
     }
   }
+
+  [HttpGet]
+  public IActionResult ListAllExams() {
+    var medicines = service.ListAllMedicines();
+
+    return StatusCode(200, medicines);
+  }
 }

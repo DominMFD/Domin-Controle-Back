@@ -52,4 +52,8 @@ public class MedicineService : IMedicineService {
 
         return medicine;
     }
+
+    public List<MedicineModel> ListAllMedicines() {
+        return context.Medicine.ToList();
+    }
 }
